@@ -4,8 +4,13 @@ An upload tool provided to developers using ssh
 
 ----
 
+
+
+![](https://zobor.github.io/scp-deploy/imgs/npm.svg)   ![](https://zobor.github.io/scp-deploy/imgs/node.svg)
+
+
 ## Install
-```
+```shell
 $ npm install scp-deploy --save-dev
 ```
 
@@ -13,52 +18,36 @@ $ npm install scp-deploy --save-dev
 ```js
 let deploy = require('scp-deploy')
 deploy({
-    host: 'your remote host',
-    port: 22, // ssh port,
-    username: 'ssh_user',
-    password: 'ssh_password',
-    src: [
-      // foder1 not include subdirectory
-      '/path/to/your/local/folder1/',
-
-      // foder2 include subdirectory
-      '/path/to/your/local/folder2/**',
-
-      // filter *.css
-      '/path/to/your/local/folder2/**.css'
-    ],
-    path: '/path/to/your/remote/foler/'
+    host: '',
+    port: 22,
+    username: '',
+    password: '',
+    src: [],
+    path: ''
 }).then((info)=>{
-    console.log(info)
+	// do sth.
 }).catch((err)=>{
-    console.log(err)
+    // handler error
 })
 ```
 
-## Options
-* `host` You want to upload the file to which server
-* `port` the server ssh port
-* `username` the server ssh login user
-* `password` the server ssh login user's password
-* `path` the path you want to save the files
-* `src` local path can be an array or a string
- > `/Users/zoborzhang/public/` the public folder's files not include subdirectory
+## deploy([options])
 
- > `/Users/zoborzhang/public/**` the public fodler's files include subdirectory
+* `host`  **String** server ip
 
- > `/Users/zoborzhang/public/*.js` not include subdirectory, all the javascript files
+* `port`  **Number** server ssh port
 
- > `/Users/zoborzhang/public/**.css` include subdirectory, all the css files
+* `username` **String** server ssh username
 
- > `/Users/zoborzhang/public/main.js` support single filename
+* `password`  **String** server ssh password
 
-## callback info format
-```js
-{
-  totalFilesize: {Number},
-  filesCount: {Number},
-  startTime: {Object Date},
-  connetedTime: {Object Date},
-  uploadedTime: {Object Date}
-}
-```
+* `path`  **String** server path to save files
+
+* `src `  **String/Array** local file list
+
+* `lastmodify` **String/Object** last modify time must over this deadline
+
+
+
+## Licence
+MIT
